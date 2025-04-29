@@ -545,9 +545,10 @@ void ToggleState() {
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
   if (msg == WM_TRAY) {
-    if (lParam == WM_LBUTTONDOWN || lParam == WM_LBUTTONDBLCLK) {
-      ToggleState();
-    }
+  if (lParam == WM_LBUTTONDOWN || lParam == WM_LBUTTONDBLCLK) {
+  // Activate xkill instead of toggling state
+  HookMouse();
+}
     else if (lParam == WM_MBUTTONDOWN) {
       if ((GetAsyncKeyState(VK_SHIFT)&0x8000)) {
         ShellExecute(NULL, L"open", inipath, NULL, NULL, SW_SHOWNORMAL);
